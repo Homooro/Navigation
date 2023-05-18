@@ -176,7 +176,8 @@
 
 </details>
 
-</br>
+</br>  
+
 اضافه کردن پروژه در local به remote_repository :  
  
 > <code>git branch -M main</code>   
