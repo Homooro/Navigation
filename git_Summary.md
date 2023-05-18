@@ -22,6 +22,10 @@
 
 > <code>git status</code>  
 
+## استفاده از help  
+> <code>git command -help</code>  (<em>See all the available options for the specific command</em>)  
+> <code>git help --all</code>  (<em>See all possible commands</em>) 
+
 ## اضافه کردن فایل به پروژه و ثبت تغییرات
 
 <div align="center">
@@ -58,6 +62,10 @@
 > <code>git log</code>  
 > <code>git log --oneline</code>  
 > <code>git log --stat</code>  
+
+ویرایش پیام commit انجام شده قبلی :   
+> <code>git log --oneline</code>  
+> <code>git commit --amend -m "previous commit is replaced with our amended one"</code>  
 
 نمایش **HEAD** در log نشان دهنده آخرین commit انجام شده است.  
 </br>  
@@ -115,7 +123,7 @@
 > <code>git log --oneline </code>   
 > <code>git revert <commit_id> </code>  
 
-دستور reset سه حالت دارد که استفاده از آن نیاز به دقت دارد.  
+دستور reset سه حالت دارد که استفاده از آن نیاز به دقت دارد چراکه تغییرات قابل بازگشت نیست.  
 <div align="center">
   <img src="https://www.bogotobogo.com/DevOps/SCM/Git/images/Hard_Reset/three-resets.png" alt="git reverse" style="width:auto;">
 </div>  
@@ -139,22 +147,83 @@
 ## کار با remote ها  
 به repository داخلی سیستم local_repository و به repository در سرور خارجی remote_repository می گویند. (مانند github)  
 ساخت ssh key در سیستم عامل و اضافه کردن آن به تنظیمات remote(github) جهت شناختن کابر به آن انجام می شود.  
+
+<details>
+<summary>راه اندازی ssh key در ویندوز</summary>  
+نرم افزار Command Prompt را باز کنید و دستور زیر را در آن تایپ کنید.</br>
+
+> <code>ssh-keygen</code>
+
+به صورت پیش فرض کلید SSh در مسیر C:\Users\your_username/.ssh/id_rsa. ذخیره می شود. برای تایید Enter بزنید.
+سپس از شما درخواست میکند برای امنیت بیشتر یک پسورد وارد کنید در صورتی که نمی خواهید پسوردی وارد کنید کافیه دوباره enter بزنید.</br>
+پس از ساخته شدن و ذخیره کردن کلید SSH به فولدر مربوطه مراجعه کنید. دو فایل در آن موجود است. فایل id_rsa که پسوندی ندارد و فایل id_rsa.pub که این فایل همان کلیدی است که روی سرورها برای احراز هویت آپلود می‌کنید. فایل اول در حقیقت کلید خصوصی است که می‌بایست از آن حفاظت کنید و در واقع نباید در اختیار کسی قرار بگیرد.</br>
+حال وارد تنظیمات ریپازیتوری آنلاینتان شوید و افزودن ssh key را انتخاب کنید و سپس محتویات فایل id_rsa.pub را در آن بریزید.</br>
+
+</details>
+
+
+<details>
+<summary>راه اندازی ssh key در لینوکس</summary>  
+اولین مرحله برای تنظیم کلیدهای SSH در اوبونتو، ایجاد یک جفت کلید در ماشین کاربر یا همان کلاینت است:  
+
+> <code>ssh-keygen</code>  
+
+در این مرحله، باید اینتر (Enter) را فشار دهید تا جفت کلید SSH./ را در فضای پیش‌فرض دایرکتوری SSH ذخیره کنید.  همچنین، امکان تعیین مسیر جایگزین وجود دارد.</br>
+سپس از شما درخواست میکند برای امنیت بیشتر یک پسورد وارد کنید در صورتی که نمی خواهید پسوردی وارد کنید کافیه دوباره enter بزنید.</br>
+پس از اجرای دستور فوق، در آدرس ~/.ssh ، دو فایل id_rsa و id_rsa.pub ساخته می‌شوند که به ترتیب کلید خصوصی(private key) و کلید عمومی(public key) شما می‌باشند.</br>
+حال وارد تنظیمات ریپازیتوری آنلاینتان شوید و افزودن ssh key را انتخاب کنید و سپس محتویات فایل id_rsa.pub را در آن بریزید. (دقت کنید که برای دسترسی به این قسمت لازم است که دسترسی مدیر یاadministrative priviledge داشته باشید.)</br>
+
+</details>
+
 </br>
 اضافه کردن پروژه در local به remote_repository :  
-
-> <code>git remote add origin https://github.com/..project_link../</code>  
+ 
 > <code>git branch -M main</code>   
-> <code>git push -u origin main</code>  
+> <code>git push https://github.com/username/reponame.git main</code>  
 
 ایجاد اسم مستعار به آدرس remote :  
 اسم مستعار origin را به ادرس remote معرفی می کنیم.  
-> <code>git remote add origin https://github.com/..project_link../</code>  
+> <code>git remote add origin https://github.com/username/reponame.git</code>  
 > <code>git branch -M main</code>   
 > <code>git push -u origin main</code>  
 
 نمایش اطلاعات remote :  
 > <code>git remote -v</code>  
+> <code>git remote show origin </code>  
 
 انتقال branch های دیگه به remote :  
 > <code>git checkout develop</code>   
 > <code>git push origin develop</code>  
+
+بارگیری پروژه ها از سرور بر روی سیستم داخلی
+> <code>mkdir myproject</code>  
+> <code>cd myproject</code>   
+> <code>git clone https://github.com/username/reponame.git </code>  
+
+ریختن از سرور به سیستم محلی  
+
+<div align="center">
+  <img src="https://www.edureka.co/community/?qa=blob&qa_blobid=5756095483457844058" alt="git fetch vs pull" style="width:auto;">
+</div>  
+
+> <code>git branch -r</code> (<em>see all remote branches</em>)   
+> <code>git branch -a</code> (<em>see all local and remote branches</em>)   
+> <code>git checkout -b local_branch_name </code>   
+> <code>git pull origin remote_branch_name</code>  
+ 
+
+ ## بررسی تغییرات و حل confilict
+
+ارور confilict ممکن است در local repository یا remote repository رخ دهد. confilict زمانی رخ میدهد که دو شخص همزمان یک قطعه از کد را تغییر دهند.  </br>
+## ذخیره تغییرات بدون commit کردن :  
+گاهی اوقات مجبوریم یک کار واجب را بدون اینکه تغییرات حال حاضر را commit بزنیم انجام دهیم که از <b>stach</b> استفاده می کنیم.  
+> <code>touch test.txt</code>     
+> <code>git status</code>   
+> <code>git stash/(git stach save "message for create stash")</code>  
+> <code>git status</code>     
+> <code>git stash list</code>   
+> <code>git stash apply id_stash</code>  
+> <code>git stash clear</code> (<em>remove all list of stash </em>)  
+> <code>git status/git add ./git commit -m "fix stash"</code>   
+
+
