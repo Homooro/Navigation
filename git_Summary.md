@@ -30,7 +30,8 @@
 
 <div align="center">
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjUMKlOAdFOWaBW_Dk8Odg2AZipZo2b49RsvsKOeqPXLYC_8tvRH80Byc4HMu1rnaM714&usqp=CAU" alt="git add" style="width:auto;">
-</div>
+</div>  
+
 به طور مثال : ساخت فایل  
 
 > <code>touch a.txt</code>  
@@ -148,7 +149,7 @@
 به repository داخلی سیستم local_repository و به repository در سرور خارجی remote_repository می گویند. (مانند github)  
 ساخت ssh key در سیستم عامل و اضافه کردن آن به تنظیمات remote(github) جهت شناختن کابر به آن انجام می شود.  
 
-<details>
+<details dir="rtl">
 <summary>راه اندازی ssh key در ویندوز</summary>  
 نرم افزار Command Prompt را باز کنید و دستور زیر را در آن تایپ کنید.</br>
 
@@ -162,7 +163,7 @@
 </details>
 
 
-<details>
+<details dir="rtl">
 <summary>راه اندازی ssh key در لینوکس</summary>  
 اولین مرحله برای تنظیم کلیدهای SSH در اوبونتو، ایجاد یک جفت کلید در ماشین کاربر یا همان کلاینت است:  
 
@@ -216,7 +217,7 @@
 
 ارور confilict ممکن است در local repository یا remote repository رخ دهد. confilict زمانی رخ میدهد که دو شخص همزمان یک قطعه از کد را تغییر دهند.  </br>
 ## ذخیره تغییرات بدون commit کردن :  
-گاهی اوقات مجبوریم یک کار واجب را بدون اینکه تغییرات حال حاضر را commit بزنیم انجام دهیم که از <b>stach</b> استفاده می کنیم.  
+گاهی اوقات مجبوریم یک کار واجب را بدون اینکه تغییرات حال حاضر را commit بزنیم انجام دهیم که از <b>stash</b> استفاده می کنیم.  
 > <code>touch test.txt</code>     
 > <code>git status</code>   
 > <code>git stash/(git stach save "message for create stash")</code>  
